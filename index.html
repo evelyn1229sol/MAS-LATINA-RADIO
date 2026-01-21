@@ -21,11 +21,58 @@ body{
   background:linear-gradient(160deg,var(--oscuro),#1e293b);
   color:var(--texto);
 }
-header{
-  background:linear-gradient(90deg,var(--rojo),var(--amarillo));
-  color:#020617;
-  padding:18px;
-  text-align:center;
+.hero{
+  height: 90vh;
+  background-image: url("mezcladora.jpg"); /* TU IMAGEN */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.hero-overlay{
+  height: 100%;
+  background: linear-gradient(
+    rgba(2,6,23,0.75),
+    rgba(2,6,23,0.9)
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero-logo{
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 12px;
+}
+
+.hero h1{
+  font-size: 42px;
+  margin: 10px 0;
+}
+
+.hero span{
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--amarillo);
+  margin-bottom: 20px;
+}
+
+.hero-btn button {
+  padding: 16px 36px;
+  font-size: 20px;
+  font-weight: 800;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(90deg,var(--rojo),var(--amarillo));
+  cursor: pointer;
+  color:#020617; /* para que el texto sea visible */
 }
 header h1{margin:0;font-size:32px}
 header span{font-weight:700}
@@ -63,29 +110,27 @@ footer{text-align:center;padding:14px;font-size:13px;color:#94a3b8}
 </style>
 </head>
 <body>
-<header style="text-align:center;">
-  <img src="logo.png" alt="Logo Radio Latina" style="height:80px; margin-bottom:10px; border-radius:10px;">
-  <h1>MAS LATINA RADIO</h1>
-  <span>La voz latina de Londres</span>
+<header class="hero">
+  <div class="hero-overlay">
+    <img src="logo.png" alt="Logo Radio Latina" class="hero-logo">
+    <h1>MAS LATINA RADIO</h1>
+    <span>La voz latina de Londres</span>
+
+    <div class="hero-btn">
+      <button onclick="togglePlay()" id="playBtn">▶ ESCUCHAR EN VIVO</button>
+      <audio id="radio" preload="none">
+        <!-- REEMPLAZAR CON STREAM REAL (ZENO, RADIO.CO, ETC) -->
+        <source src="https://ofivlc.com.es/listen/maslatina/radio.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  </div>
 </header>
 
 <nav>
-  <button onclick="go('en-vivo')">EN VIVO</button>
   <button onclick="go('programacion')">PROGRAMACIÓN</button>
   <button onclick="go('podcast')">PODCASTS</button>
   <button onclick="go('contacto')">CONTACTO</button>
 </nav>
-
-<section id="en-vivo">
-  <div class="card player">
-    <button onclick="togglePlay()" id="playBtn">▶ ESCUCHAR EN VIVO</button>
-    <audio id="radio" preload="none">
-      <!-- REEMPLAZAR CON STREAM REAL (ZENO, RADIO.CO, ETC) -->
-      <source src="https://ofivlc.com.es/listen/maslatina/radio.mp3" type="audio/mpeg">
-    </audio>
-    <div class="status" id="status">En pausa</div>
-  </div>
-</section>
 
 <section id="programacion">
   <div class="card">
@@ -140,6 +185,7 @@ function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
 </script>
 </body>
 </html>
+
 
 
 
